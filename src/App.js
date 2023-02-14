@@ -20,9 +20,9 @@ function App() {
     try
     {
 
-      const response = await api.get("/api/v1/movies");
+      const response = await api.get("http://localhost:8080/api/v1/locations");
 
-      setMovies(response.data);
+      setMovies(response.data );
 
     } 
     catch(err)
@@ -35,8 +35,9 @@ function App() {
      
     try 
     {
-        const response = await api.get(`/api/v1/movies/${movieId}`);
+        // const response = await api.get(`/locations/${movieId}`);
 
+        const response = await api.get(`/locations/tt3915175`);
         const singleMovie = response.data;
 
         setMovie(singleMovie);
@@ -63,7 +64,7 @@ function App() {
           <Route path="/" element={<Layout/>}>
             <Route path="/" element={<Home movies={movies} />} ></Route>
             <Route path="/Trailer/:ytTrailerId" element={<Trailer/>}></Route>
-            <Route path="/Reviews/:movieId" element ={<Reviews getMovieData = {getMovieData} movie={movie} reviews ={reviews} setReviews = {setReviews} />}></Route>
+            <Route path="/Reviews/:locationId" element ={<Reviews />}></Route>
             <Route path="*" element = {<NotFound/>}></Route>
           </Route>
       </Routes>
